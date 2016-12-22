@@ -854,4 +854,8 @@ class ShareByMailProvider implements IShareProvider {
 		return $shares;
 	}
 
+	public function getAccessList($nodes, $currentAccess) {
+		return ['users' => [], 'remote' => false, 'public' => false];
+	}
+
 }
