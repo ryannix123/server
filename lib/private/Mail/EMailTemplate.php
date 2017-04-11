@@ -341,7 +341,7 @@ EOF;
 			return;
 		}
 
-		$this->htmlBody .= vsprintf($this->heading, [$title]);
+		$this->htmlBody .= vsprintf($this->heading, [htmlspecialchars($title)]);
 		$this->plainBody .= $title . PHP_EOL . PHP_EOL;
 	}
 
@@ -360,7 +360,7 @@ EOF;
 			$this->bodyOpened = true;
 		}
 
-		$this->htmlBody .= vsprintf($this->bodyText, [$text]);
+		$this->htmlBody .= vsprintf($this->bodyText, [htmlspecialchars($text)]);
 		$this->plainBody .= $text . PHP_EOL . PHP_EOL;
 	}
 
@@ -383,7 +383,7 @@ EOF;
 		}
 
 		$color = $this->themingDefaults->getColorPrimary();
-		$this->htmlBody .= vsprintf($this->buttonGroup, [$color, $color, $urlLeft, $color, $textLeft, $urlRight, $textRight]);
+		$this->htmlBody .= vsprintf($this->buttonGroup, [$color, $color, $urlLeft, $color, htmlspecialchars($textLeft), $urlRight, htmlspecialchars($textRight)]);
 		$this->plainBody .= $textLeft . ': ' . $urlLeft . PHP_EOL;
 		$this->plainBody .= $textRight . ': ' . $urlRight . PHP_EOL . PHP_EOL;
 
@@ -416,7 +416,7 @@ EOF;
 	/**
 	 * Adds a logo and a text to the footer. <br> in the text will be replaced by new lines in the plain text email
 	 *
-	 * @param string $text
+	 * @param string $text If the text is empty the default "Name - Slogan<br>This is an automatically generated email" will be used
 	 */
 	public function addFooter($text = '') {
 		if($text === '') {
