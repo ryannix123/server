@@ -27,6 +27,6 @@ p($l->t("Cheers!"));
 print_unescaped("\n");
 ?>
 
-	--
+<?php print_unescaped("-- \n"); ?>
 <?php p($theme->getName() . ' - ' . $theme->getSlogan()); ?>
 <?php print_unescaped("\n".$theme->getBaseUrl());
